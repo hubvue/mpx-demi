@@ -1,9 +1,9 @@
-const { switchVersion, loadModule } = require('./utils')
+const { switchVersion, loadModule, loadModulePkg, checkVersion } = require('./utils')
 
 const Vue = loadModule('vue')
-const Mpx = require.resolve('@mpxjs/core')
+const Mpx = loadModulePkg('@mpxjs/core')
 
-if (!Mpx && (!Vue || typeof Vue.version !== 'string')) {
+if ((!Mpx || !checkVersion(Mpx.version, '2.7.0')) && (!Vue || typeof Vue.version !== 'string')) {
   console.warn('[v-demi] Vue or Mpx is not found. Please run "npm install vue or npm install @mpxjs/core" to install.')
 } else if (Mpx) {
   switchVersion('mpx')

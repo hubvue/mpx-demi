@@ -11,6 +11,34 @@ function loadModule(name) {
   }
 }
 
+function loadModulePkg(name) {
+  try {
+    const pkgPath = require.resolve(`${name}/package.json`)
+    return require(pkgPath)
+  } catch (e) {
+    return undefined
+  }
+}
+
+function checkVersion(srcV, destV) {
+  const srcVArr = srcV.split('-')[0].split('.').map(v => +v)
+  const destVArr = destV.split('-')[0].split('.').map(v => +v)
+  
+  const srcVMa = srcVArr[0]
+  const destVMa = destVArr[0]
+  const srcVMi = srcVArr[1]
+  const destVMi = destVArr[1]
+  const srcVP = srcVArr[2]
+  const destVP = destVArr[2]
+  if (srcVMa < destVMa) {
+    return false
+  }
+  if (srcVMi < destVMi) {
+    return false
+  }
+  return srcVP >= destVP
+}
+
 function copy(name, version, vue) {
   vue = vue || 'vue'
   const src = path.join(dir, `v${version}`, name)
@@ -79,3 +107,5 @@ function switchVersion(framework, version, vue) {
 
 module.exports.loadModule = loadModule
 module.exports.switchVersion = switchVersion
+module.exports.loadModulePkg = loadModulePkg
+module.exports.checkVersion = checkVersion
