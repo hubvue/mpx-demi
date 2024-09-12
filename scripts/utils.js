@@ -62,9 +62,10 @@ export { ${exports.join(', ')} } from '@vue/composition-api/dist/vue-composition
 function switchVersion(framework, version, vue) {
   switch (framework) {
     case 'mpx':
-      copyMpx('index.cjs')
-      copyMpx('index.mjs')
-      copyMpx('index.d.ts')
+      copyMpx('index.cjs', '')
+      copyMpx('index.mjs', '')
+      copyMpx('index.d.ts', '')
+      break
     default:
       copy('index.cjs', version, vue)
       copy('index.mjs', version, vue)
