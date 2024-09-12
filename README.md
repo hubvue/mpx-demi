@@ -24,11 +24,11 @@
 Install this as your plugin's dependency:
 
 ```bash
-npm i vue-demi
+npm i v-demi
 # or
-yarn add vue-demi
+yarn add v-demi
 # or 
-pnpm i vue-demi
+pnpm i v-demi
 ```
 
 Add `vue` and `@vue/composition-api` to your plugin's peer dependencies to specify what versions you support.
@@ -36,14 +36,21 @@ Add `vue` and `@vue/composition-api` to your plugin's peer dependencies to speci
 ```jsonc
 {
   "dependencies": {
-    "vue-demi": "latest"
+    "v-demi": "latest"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^2.0.0 || >=3.0.0"
+    "vue": "^2.0.0 || >=3.0.0",
+    "@mpxjs/core": "^2.7.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "@mpxjs/core": {
       "optional": true
     }
   },
@@ -56,17 +63,17 @@ Add `vue` and `@vue/composition-api` to your plugin's peer dependencies to speci
 Import everything related to Vue from it, it will redirect to `vue@2` + `@vue/composition-api` or `vue@3` based on users' environments.
 
 ```ts
-import { ref, reactive, defineComponent } from 'vue-demi'
+import { ref, reactive, defineComponent } from 'v-demi'
 ```
 
 Publish your plugin and all is done!
 
-> When using with [Vite](https://vitejs.dev), you will need to opt-out the pre-bundling to get `vue-demi` work properly by
+> When using with [Vite](https://vitejs.dev), you will need to opt-out the pre-bundling to get `v-demi` work properly by
 > ```js
 > // vite.config.js
 > export default defineConfig({
 >   optimizeDeps: {
->     exclude: ['vue-demi']
+>     exclude: ['v-demi']
 >  }
 > })
 > ```
@@ -78,9 +85,11 @@ Publish your plugin and all is done!
 ### `isVue2` `isVue3`
 
 ```ts
-import { isVue2, isVue3 } from 'vue-demi'
+import { isVue2, isVue3, isMpx } from 'v-demi'
 
-if (isVue2) {
+if (isMpx) {
+  // Mpx only
+} else if (isVue2) {
   // Vue 2 only
 } else {
   // Vue 3 only
@@ -92,7 +101,7 @@ if (isVue2) {
 To avoid bringing in all the tree-shakable modules, we provide a `Vue2` export to support access to Vue 2's global API. (See [#41](https://github.com/vueuse/vue-demi/issues/41).)
 
 ```ts
-import { Vue2 } from 'vue-demi'
+import { Vue2 } from 'v-demi'
 
 if (Vue2) {
   Vue2.config.ignoredElements.push('x-foo')
@@ -101,10 +110,10 @@ if (Vue2) {
 
 ### `install()`
 
-Composition API in Vue 2 is provided as a plugin and needs to be installed on the Vue instance before using. Normally, `vue-demi` will try to install it automatically. For some usages where you might need to ensure the plugin gets installed correctly, the `install()` API is exposed to as a safe version of `Vue.use(CompositionAPI)`. `install()` in the Vue 3 environment will be an empty function (no-op).
+Composition API in Vue 2 is provided as a plugin and needs to be installed on the Vue instance before using. Normally, `v-demi` will try to install it automatically. For some usages where you might need to ensure the plugin gets installed correctly, the `install()` API is exposed to as a safe version of `Vue.use(CompositionAPI)`. `install()` in the Vue 3 environment will be an empty function (no-op).
 
 ```ts
-import { install } from 'vue-demi'
+import { install } from 'v-demi'
 
 install()
 ```
@@ -116,9 +125,9 @@ install()
 To explicitly switch the redirecting version, you can use these commands in your project's root.
 
 ```bash
-npx vue-demi-switch 2
+npx v-demi-switch 2
 # or
-npx vue-demi-switch 3
+npx v-demii-switch 3
 ```
 
 ### Package Aliasing
@@ -126,12 +135,12 @@ npx vue-demi-switch 3
 If you would like to import `vue` under an alias, you can use the following command 
 
 ```bash
-npx vue-demi-switch 2 vue2
+npx v-demi-switch 2 vue2
 # or
-npx vue-demi-switch 3 vue3
+npx v-demi-switch 3 vue3
 ```
 
-Then `vue-demi` will redirect APIs from the alias name you specified, for example:
+Then `v-demi` will redirect APIs from the alias name you specified, for example:
 
 ```ts
 import * as Vue from 'vue3'
@@ -154,7 +163,7 @@ export {
 If the `postinstall` hook doesn't get triggered or you have updated the Vue version, try to run the following command to resolve the redirecting.
 
 ```bash
-npx vue-demi-fix
+npx v-demi-fix
 ```
 
 ### Isomorphic Testings
@@ -164,8 +173,8 @@ You can support testing for both versions by adding npm alias in your dev depend
 ```json
 {
   "scripts": {
-    "test:2": "vue-demi-switch 2 vue2 && jest",
-    "test:3": "vue-demi-switch 3 && jest",
+    "test:2": "v-demi-switch 2 vue2 && jest",
+    "test:3": "v-demi-switch 3 && jest",
   },
   "devDependencies": {
     "vue": "^3.0.0",
@@ -179,8 +188,8 @@ or
 ```json
 {
   "scripts": {
-    "test:2": "vue-demi-switch 2 && jest",
-    "test:3": "vue-demi-switch 3 vue3 && jest",
+    "test:2": "v-demi-switch 2 && jest",
+    "test:3": "v-demi-switch 3 vue3 && jest",
   },
   "devDependencies": {
     "vue": "^2.6.0",

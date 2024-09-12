@@ -2,7 +2,9 @@ import Vue from 'vue'
 import type { PluginFunction, PluginObject } from 'vue'
 declare const isVue2: boolean
 declare const isVue3: boolean
+declare const isMpx: boolean
 declare const Vue2: typeof Vue | undefined
+declare const Mpx: undefined
 declare const version: string
 declare const install: (vue?: typeof Vue) => void
 /**
@@ -24,6 +26,8 @@ export * from '@vue/composition-api'
 export {
   V as Vue,
   Vue2,
+  Mpx,
+  isMpx,
   isVue2,
   isVue3,
   version,

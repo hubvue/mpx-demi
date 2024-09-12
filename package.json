@@ -1,13 +1,13 @@
 {
-  "name": "vue-demi",
-  "version": "0.14.10",
+  "name": "mpx-demi",
+  "version": "0.0.0",
   "engines": {
     "node": ">=12"
   },
-  "repository": "https://github.com/antfu/vue-demi.git",
+  "repository": "https://github.com/hubvue/mpx-demi.git",
   "funding": "https://github.com/sponsors/antfu",
   "license": "MIT",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "Hubvue <cckcc.kim@gmail.com>",
   "main": "lib/index.cjs",
   "jsdelivr": "lib/index.iife.js",
   "unpkg": "lib/index.iife.js",
@@ -23,8 +23,8 @@
     "./*": "./*"
   },
   "bin": {
-    "vue-demi-fix": "bin/vue-demi-fix.js",
-    "vue-demi-switch": "bin/vue-demi-switch.js"
+    "v-demi-fix": "bin/v-demi-fix.js",
+    "v-demi-switch": "bin/v-demi-switch.js"
   },
   "files": [
     "lib",
@@ -37,10 +37,17 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^3.0.0-0 || ^2.6.0"
+    "vue": "^3.0.0-0 || ^2.6.0",
+    "@mpxjs/core": "^2.7.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "@mpxjs/core": {
       "optional": true
     }
   }

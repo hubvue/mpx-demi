@@ -24,6 +24,17 @@ function copy(name, version, vue) {
   fs.writeFileSync(dest, content, 'utf-8')
 }
 
+function copyMpx(name, version) {
+  const src = path.join(dir, `mpx${version}`, name)
+  const dest = path.join(dir, name)
+  let content = fs.readFileSync(src, 'utf-8')
+  // unlink for pnpm, #92
+  try {
+    fs.unlinkSync(dest)
+  } catch (error) { }
+  fs.writeFileSync(dest, content, 'utf-8')
+}
+
 function updateVue2API() {
   const ignoreList = ['version', 'default']
   const VCA = loadModule('@vue/composition-api')
@@ -48,13 +59,20 @@ export { ${exports.join(', ')} } from '@vue/composition-api/dist/vue-composition
   
 }
 
-function switchVersion(version, vue) {
-  copy('index.cjs', version, vue)
-  copy('index.mjs', version, vue)
-  copy('index.d.ts', version, vue)
-
-  if (version === 2)
-    updateVue2API()
+function switchVersion(framework, version, vue) {
+  switch (framework) {
+    case 'mpx':
+      copyMpx('index.cjs')
+      copyMpx('index.mjs')
+      copyMpx('index.d.ts')
+    default:
+      copy('index.cjs', version, vue)
+      copy('index.mjs', version, vue)
+      copy('index.d.ts', version, vue)
+    
+      if (version === 2)
+        updateVue2API()
+  }
 }
 
 
