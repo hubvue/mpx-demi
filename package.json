@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=12"
   },
-  "repository": "https://github.com/hubvue/mpx-demi.git",
+  "repository": "https://github.com/hubvue/v-demi.git",
   "funding": "https://github.com/sponsors/antfu",
   "license": "MIT",
   "author": "Hubvue <cckcc.kim@gmail.com>",
