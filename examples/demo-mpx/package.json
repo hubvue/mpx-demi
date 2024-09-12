@@ -13,6 +13,6 @@
     "@mpxjs/api-proxy": "^2.9.61",
     "@mpxjs/core": "^2.9.59",
     "@mpxjs/store": "^2.9.59",
-    "v-demi": "0.0.1-beta.2"
+    "v-demi": "0.0.1-beta.3"
   }
 }

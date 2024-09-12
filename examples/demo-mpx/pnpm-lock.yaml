@@ -4,13 +4,13 @@ specifiers:
   '@mpxjs/api-proxy': ^2.9.61
   '@mpxjs/core': ^2.9.59
   '@mpxjs/store': ^2.9.59
-  v-demi: 0.0.1-beta.2
+  v-demi: 0.0.1-beta.3
 
 dependencies:
   '@mpxjs/api-proxy': artifactory.intra.xiaojukeji.com/@mpxjs/api-proxy/2.9.61_@mpxjs+core@2.9.59
   '@mpxjs/core': artifactory.intra.xiaojukeji.com/@mpxjs/core/2.9.59_mp2fewdhk543h4yl4fuw6x3omi
   '@mpxjs/store': artifactory.intra.xiaojukeji.com/@mpxjs/store/2.9.59_@mpxjs+core@2.9.59
-  v-demi: artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.2_@mpxjs+core@2.9.59
+  v-demi: artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.3_@mpxjs+core@2.9.59
 
 packages:
 
@@ -217,11 +217,11 @@ packages:
     version: 1.1.0
     dev: false
 
-  artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.2_@mpxjs+core@2.9.59:
-    resolution: {integrity: sha512-f12qdHG05yF6QwOzICJKCeo+CZEvGYJT/q3hv9qTn7VHCWD4lHgGcLac73ICEP+Rw9uB1lBbNUdrTch3KatxHw==, registry: http://npm.intra.xiaojukeji.com/, tarball: http://artifactory.intra.xiaojukeji.com/artifactory/api/npm/npm/v-demi/-/v-demi-0.0.1-beta.2.tgz}
-    id: artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.2
+  artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.3_@mpxjs+core@2.9.59:
+    resolution: {integrity: sha512-95uqKlQj320MKMCbjC2beW9OK4vqUI5niSDBF6Kxopq5f5eqrK8FWjqVKmf/0Jt9Z4VULJtSvXw/wuCC2Dg96w==, registry: http://npm.intra.xiaojukeji.com/, tarball: http://artifactory.intra.xiaojukeji.com/artifactory/api/npm/npm/v-demi/-/v-demi-0.0.1-beta.3.tgz}
+    id: artifactory.intra.xiaojukeji.com/v-demi/0.0.1-beta.3
     name: v-demi
-    version: 0.0.1-beta.2
+    version: 0.0.1-beta.3
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
